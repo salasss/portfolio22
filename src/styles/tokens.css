@@ -1,0 +1,80 @@
+/* ============================================================
+   DESIGN TOKENS — nuit (défaut) + lumière (papier crème)
+   ============================================================ */
+:root,
+:root[data-theme='dark'] {
+  --bg: #07070c;
+  --bg-elev: #0e0e16;
+  --bg-elev-2: #14141f;
+  --text: #f5f5ff;
+  --text-dim: #9a9ab0;
+  --text-mute: #5a5a70;
+  --line: rgba(245, 245, 255, 0.08);
+  --line-strong: rgba(245, 245, 255, 0.16);
+
+  --grad-a: #7c3aed; /* violet */
+  --grad-b: #f59e0b; /* ambre/orange — chaud */
+  --accent: #a855f7; /* accent solide dérivé (liens/focus) */
+  --accent-grad: linear-gradient(120deg, var(--grad-a), var(--grad-b));
+  --glow: 0 0 40px rgba(124, 58, 237, 0.35), 0 0 80px rgba(245, 158, 11, 0.18);
+
+  --grain-opacity: 0.04;
+  --selection-bg: rgba(245, 158, 11, 0.25);
+
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f4f1ea;
+  --bg-elev: #ffffff;
+  --bg-elev-2: #f1eee6;
+  --text: #14141a;
+  --text-dim: #4a4a58;
+  --text-mute: #8a8a96;
+  --line: rgba(20, 20, 26, 0.1);
+  --line-strong: rgba(20, 20, 26, 0.2);
+
+  --grad-a: #6d28d9;
+  --grad-b: #d97706; /* violet→ambre assombri pour contraste AA sur crème */
+  --accent: #6d28d9;
+  --accent-grad: linear-gradient(120deg, var(--grad-a), var(--grad-b));
+  --glow: 0 0 40px rgba(109, 40, 217, 0.18), 0 0 80px rgba(217, 119, 6, 0.12);
+
+  --grain-opacity: 0.02;
+  --selection-bg: rgba(217, 119, 6, 0.22);
+
+  color-scheme: light;
+}
+
+:root {
+  /* Typographie */
+  --font-display: 'Clash Display', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'General Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --fs-display: clamp(3rem, 11vw, 11rem);
+  --fs-h1: clamp(2.2rem, 6vw, 5rem);
+  --fs-h2: clamp(1.7rem, 3.6vw, 2.8rem);
+  --fs-h3: clamp(1.15rem, 1.6vw, 1.4rem);
+  --fs-body: clamp(1rem, 1.05vw, 1.15rem);
+  --fs-small: 0.85rem;
+  --fs-mono: 0.78rem;
+
+  /* Espacement & layout */
+  --gutter: clamp(1.25rem, 5vw, 6rem);
+  --maxw: 1600px;
+  --section-pad: clamp(6rem, 14vh, 12rem);
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.7s;
+  --dur-fast: 0.35s;
+
+  --header-h: 76px;
+  --z-cursor: 9999;
+  --z-overlay: 1000;
+  --z-header: 900;
+}

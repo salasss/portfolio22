@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#07070C" />
+    <title>Salas Alkama — Cloud / DevOps / DevSecOps Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio de Salas Alkama — aspirant ingénieur Cloud, DevOps & DevSecOps. Automatisation d'infrastructure (IaC), conteneurisation, sécurisation des pipelines CI/CD."
+    />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Salas Alkama — Cloud / DevOps / DevSecOps" />
+    <meta
+      property="og:description"
+      content="Aspirant ingénieur Cloud, DevOps & DevSecOps. IaC, conteneurisation, CI/CD sécurisé."
+    />
+    <meta property="og:image" content="./og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts (CDN — remplaçables par du self-host, cf. README) -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Salas Alkama",
+        "jobTitle": "Cloud / DevOps / DevSecOps Engineer",
+        "email": "alkama.salas.pro@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Aulnay-sous-Bois", "addressCountry": "FR" },
+        "sameAs": ["https://www.linkedin.com/in/salas-alkama", "https://github.com/salasss"]
+      }
+    </script>
+
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+
+  <body>
+    <!-- Curseur custom -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+
+    <!-- Barre de progression scroll -->
+    <div class="progress" aria-hidden="true"><span class="progress__bar" id="progress-bar"></span></div>
+
+    <!-- Grain overlay -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Preloader / boot terminal -->
+    <div class="preloader" id="preloader">
+      <div class="preloader__inner">
+        <pre class="preloader__log" id="boot-log" aria-hidden="true"></pre>
+        <div class="preloader__track"><span class="preloader__bar" id="boot-bar"></span></div>
+        <button class="preloader__skip" id="boot-skip" type="button" data-i18n="boot.skip">skip ↵</button>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+      <a class="header__logo" href="#hero" data-magnetic>salas<span>.</span>alkama</a>
+
+      <nav class="header__nav" id="nav" aria-label="Primary">
+        <a href="#about" data-nav data-i18n="nav.about">À propos</a>
+        <a href="#skills" data-nav data-i18n="nav.skills">Compétences</a>
+        <a href="#experience" data-nav data-i18n="nav.experience">Parcours</a>
+        <a href="#projects" data-nav data-i18n="nav.work">Projets</a>
+        <a href="#contact" data-nav data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="toggle" id="lang-toggle" type="button" data-magnetic aria-label="Changer de langue">
+          <span class="toggle__lang" data-lang-fr>FR</span><span class="toggle__sep">/</span><span class="toggle__lang" data-lang-en>EN</span>
+        </button>
+        <button class="toggle toggle--icon" id="theme-toggle" type="button" data-magnetic aria-label="Basculer le thème">
+          <span class="toggle__icon" data-theme-dark>☾</span><span class="toggle__icon" data-theme-light>☀</span>
+        </button>
+        <button class="toggle toggle--icon" id="sound-toggle" type="button" data-magnetic aria-pressed="false" aria-label="Activer / couper le son">
+          <span class="toggle__icon" data-sound-on>♪</span><span class="toggle__icon" data-sound-off>×</span>
+        </button>
+        <a class="btn btn--cv" id="cv-btn" href="./cv/Salas-Alkama-CV.pdf" download data-magnetic>
+          <span data-i18n="cta.cv">CV</span> <span aria-hidden="true">↓</span>
+        </a>
+        <button class="header__burger" id="burger" type="button" aria-label="Menu"><span></span><span></span></button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero__content">
+          <p class="hero__pill"><span class="hero__dot"></span><span data-i18n="hero.status">Ouvert à l'alternance · Sept. 2026</span></p>
+          <h1 class="hero__title" data-split>SALAS ALKAMA</h1>
+          <p class="hero__subtitle mono" id="hero-subtitle" data-typewriter="CLOUD / DEVOPS / DEVSECOPS ENGINEER">&nbsp;</p>
+        </div>
+        <a class="hero__scroll" href="#about" aria-label="scroll"><span data-i18n="hero.scroll">défiler</span><span class="hero__scroll-line"></span></a>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="about section" id="about">
+        <span class="kicker"><b>01</b> — <span data-i18n="about.kicker">À propos</span></span>
+        <div class="about__grid">
+          <div class="about__text">
+            <h2 class="h2" data-split data-i18n="about.title">Construire, automatiser et sécuriser la production à grande échelle.</h2>
+            <p data-reveal data-i18n="about.p1"></p>
+            <p data-reveal data-i18n="about.p2"></p>
+          </div>
+          <aside class="glance" aria-label="En bref">
+            <dl>
+              <div class="glance__row"><dt data-i18n="glance.location.k">Localisation</dt><dd data-i18n="glance.location.v">Île-de-France, FR</dd></div>
+              <div class="glance__row"><dt data-i18n="glance.availability.k">Disponibilité</dt><dd data-i18n="glance.availability.v">Alternance · Sept. 2026</dd></div>
+              <div class="glance__row"><dt data-i18n="glance.languages.k">Langues</dt><dd data-i18n="glance.languages.v">FR · EN</dd></div>
+              <div class="glance__row"><dt data-i18n="glance.focus.k">Focus</dt><dd data-i18n="glance.focus.v">Cloud · DevSecOps · FinOps</dd></div>
+            </dl>
+          </aside>
+        </div>
+        <div class="marquee" id="stack-marquee" aria-hidden="true"></div>
+      </section>
+
+      <!-- KPI -->
+      <section class="kpi section" id="kpi" aria-label="Chiffres clés">
+        <div class="kpi__grid">
+          <div class="kpi__item"><span class="kpi__num" data-counter data-target="30" data-prefix="−" data-suffix="%"></span><span class="kpi__label" data-i18n="kpi.k1">temps de chargement</span></div>
+          <div class="kpi__item"><span class="kpi__num" data-counter data-target="6" data-suffix="+"></span><span class="kpi__label" data-i18n="kpi.k2">projets techniques</span></div>
+          <div class="kpi__item"><span class="kpi__num" data-counter data-target="3" data-suffix=""></span><span class="kpi__label" data-i18n="kpi.k3">expériences</span></div>
+          <div class="kpi__item"><span class="kpi__num" data-counter data-target="2" data-suffix="" data-text="GCP/AWS"></span><span class="kpi__label" data-i18n="kpi.k4">multi-cloud</span></div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="skills section" id="skills">
+        <span class="kicker"><b>02</b> — <span data-i18n="skills.kicker">Compétences</span></span>
+        <h2 class="h2" data-split data-i18n="skills.title">Un stack qui se touche.</h2>
+        <p class="section__hint mono" data-i18n="skills.hint">survole une bulle pour le détail</p>
+        <div class="skills__stage">
+          <canvas class="skills__canvas" id="skills-canvas" aria-hidden="true"></canvas>
+          <ul class="skills__legend" id="skills-legend"></ul>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="experience section" id="experience">
+        <span class="kicker"><b>03</b> — <span data-i18n="exp.kicker">Parcours</span></span>
+        <h2 class="h2" data-split data-i18n="exp.title">Expérience professionnelle.</h2>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="projects section" id="projects">
+        <span class="kicker"><b>04</b> — <span data-i18n="work.kicker">Projets</span></span>
+        <h2 class="h2" data-split data-i18n="work.title">Réalisations techniques.</h2>
+        <p class="section__hint mono" data-i18n="work.hint">clique pour le détail · glisse pour défiler →</p>
+        <div class="projects__grid" id="projects-grid"></div>
+      </section>
+
+      <!-- NOW / ENGAGEMENT / CERTIFS -->
+      <section class="now section" id="now">
+        <span class="kicker"><b>05</b> — <span data-i18n="now.kicker">En ce moment</span></span>
+        <div class="now__grid">
+          <article class="now__card">
+            <h3 class="now__title" data-i18n="now.title">Now</h3>
+            <ul class="now__list" id="now-list"></ul>
+          </article>
+          <article class="now__card">
+            <h3 class="now__title" data-i18n="now.engagementTitle">Engagement</h3>
+            <ul class="now__list" id="engagement-list"></ul>
+          </article>
+          <article class="now__card">
+            <h3 class="now__title" data-i18n="now.certifsTitle">Certifications</h3>
+            <ul class="now__list" id="certifs-list"></ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact section" id="contact">
+        <span class="kicker"><b>06</b> — <span data-i18n="contact.kicker">Contact</span></span>
+        <h2 class="contact__cta" data-split data-i18n="contact.title">Travaillons ensemble.</h2>
+        <p class="contact__lead" data-reveal data-i18n="contact.lead"></p>
+
+        <div class="contact__grid">
+          <form class="form" id="contact-form" novalidate>
+            <p class="form__row">
+              <label for="f-name" data-i18n="contact.form.name">Nom</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required />
+            </p>
+            <p class="form__row">
+              <label for="f-email" data-i18n="contact.form.email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required />
+            </p>
+            <p class="form__row">
+              <label for="f-message" data-i18n="contact.form.message">Message</label>
+              <textarea id="f-message" name="message" rows="4" required></textarea>
+            </p>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="form__honey" />
+            <button class="btn btn--solid" type="submit" data-magnetic>
+              <span class="form__btn-label" data-i18n="contact.form.send">Envoyer</span> <span aria-hidden="true">→</span>
+            </button>
+            <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <aside class="contact__side">
+            <a class="contact__mail" href="mailto:alkama.salas.pro@gmail.com" data-copy-email="alkama.salas.pro@gmail.com" data-magnetic>
+              alkama.salas.pro@gmail.com
+            </a>
+            <ul class="contact__socials">
+              <li><a href="https://www.linkedin.com/in/salas-alkama" target="_blank" rel="noopener" data-external data-magnetic>LinkedIn ↗</a></li>
+              <li><a href="https://github.com/salasss" target="_blank" rel="noopener" data-external data-magnetic>GitHub ↗</a></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span class="footer__made" data-i18n="footer.madeby">conçu & codé from scratch</span>
+      <span class="footer__clock mono"><span id="clock">--:--:--</span> · Paris</span>
+      <span class="footer__year">© <span id="year">2026</span> Salas Alkama</span>
+      <a class="footer__top" href="#hero" data-magnetic data-i18n="footer.top">haut ↑</a>
+    </footer>
+
+    <!-- Command palette (Cmd/Ctrl + K) -->
+    <div class="palette" id="palette" hidden>
+      <div class="palette__backdrop" data-palette-close></div>
+      <div class="palette__panel" role="dialog" aria-modal="true" aria-label="Command palette">
+        <input class="palette__input" id="palette-input" type="text" placeholder="Tape une commande…" autocomplete="off" />
+        <ul class="palette__list" id="palette-list"></ul>
+      </div>
+    </div>
+
+    <!-- Terminal (sudo) -->
+    <div class="terminal" id="terminal" hidden>
+      <div class="terminal__backdrop" data-terminal-close></div>
+      <div class="terminal__panel" role="dialog" aria-modal="true" aria-label="Terminal">
+        <div class="terminal__bar"><span></span><span></span><span></span><b class="mono">guest@salas — sudo</b></div>
+        <pre class="terminal__out" id="terminal-out"></pre>
+        <div class="terminal__prompt"><span class="mono">$</span><input class="terminal__input" id="terminal-input" type="text" autocomplete="off" spellcheck="false" /></div>
+      </div>
+    </div>
+
+    <!-- Mount popups projets -->
+    <div class="popup-root" id="popup-root"></div>
+
+    <!-- Toasts -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Konami layer -->
+    <div class="konami" id="konami" aria-hidden="true"></div>
+  </body>
+</html>

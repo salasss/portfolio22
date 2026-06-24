@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — command not found · Salas Alkama</title>
+    <meta name="robots" content="noindex" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #07070c;
+        --text: #f5f5ff;
+        --dim: #9a9ab0;
+        --a: #7c3aed;
+        --b: #f59e0b;
+      }
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        padding: 2rem;
+      }
+      .win {
+        width: min(620px, 94vw);
+        border: 1px solid rgba(245, 245, 255, 0.16);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 0 60px rgba(124, 58, 237, 0.25);
+      }
+      .bar {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem;
+        border-bottom: 1px solid rgba(245, 245, 255, 0.1);
+      }
+      .bar span {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: rgba(245, 245, 255, 0.2);
+      }
+      .bar span:nth-child(1) {
+        background: #ff5f57;
+      }
+      .bar span:nth-child(2) {
+        background: #febc2e;
+      }
+      .bar span:nth-child(3) {
+        background: #28c840;
+      }
+      .body {
+        padding: 1.6rem;
+        font-size: 0.9rem;
+        line-height: 1.9;
+      }
+      .err {
+        color: #ef4444;
+      }
+      .dim {
+        color: var(--dim);
+      }
+      .code {
+        font-size: clamp(3rem, 14vw, 7rem);
+        font-weight: 700;
+        background: linear-gradient(120deg, var(--a), var(--b));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        line-height: 1;
+        margin: 0.4rem 0 1rem;
+      }
+      a.home {
+        display: inline-block;
+        margin-top: 1rem;
+        color: var(--text);
+        border: 1px solid rgba(245, 245, 255, 0.2);
+        border-radius: 999px;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        transition: 0.25s;
+      }
+      a.home:hover {
+        border-color: transparent;
+        background: linear-gradient(120deg, var(--a), var(--b));
+      }
+    </style>
+  </head>
+  <body>
+    <div class="win">
+      <div class="bar"><span></span><span></span><span></span></div>
+      <div class="body">
+        <div class="code">404</div>
+        <div><span class="dim">$</span> open <span class="dim">page</span></div>
+        <div class="err">bash: page: command not found</div>
+        <div class="dim">// la ressource demandée n'existe pas.</div>
+        <a class="home" href="/">cd ~ &nbsp;→&nbsp; retour accueil</a>
+      </div>
+    </div>
+  </body>
+</html>
