@@ -31,8 +31,8 @@ const THRESHOLD = 1 // seuil du champ scalaire (>=1 -> dans une bulle)
 const SPRING = 2.6 // raideur du ressort vers l'ancre du pôle
 const DAMPING = 3.4 // amortissement (frottement) des vitesses
 const REPULSE = 240 // intensité de répulsion entre bulles
-const CURSOR_RADIUS = 130 // rayon d'influence du curseur (px CSS)
-const CURSOR_FORCE = 1400 // intensité de poussée du curseur
+const CURSOR_RADIUS = 140 // rayon d'influence du curseur (px CSS) — doux, pour ne pas faire "fuir" le survol
+const CURSOR_FORCE = 750 // intensité de poussée du curseur (faible : on veut pouvoir survoler)
 const MAX_SPEED = 520 // vitesse max (px/s) — anti-explosion
 
 interface Bubble {
@@ -90,6 +90,8 @@ function levelDots(level: number): string {
 export function initSkillsMetaballs(canvas: HTMLCanvasElement): void {
   const ctx = canvas.getContext('2d')
   if (!ctx) return
+  // Alias non-null : préserve le type dans les closures imbriquées.
+  const g: CanvasRenderingContext2D = ctx
 
   const reduced = prefersReducedMotion()
   const legendHost = qsOpt('#skills-legend')
@@ -299,9 +301,13 @@ export function initSkillsMetaballs(canvas: HTMLCanvasElement): void {
       }
     }
 
-    // Poussée du curseur (écarte délicatement).
+    // Poussée du curseur (écarte délicatement) — SAUF la bulle survolée,
+    // qu'on laisse en place pour pouvoir lire son tooltip.
     if (pointerActive) {
-      for (const b of bubbles) {
+      for (let i = 0; i < bubbles.length; i++) {
+        if (i === hovered) continue
+        const b = bubbles[i]
+        if (!b) continue
         const dx = b.x - pointerX
         const dy = b.y - pointerY
         const d = Math.hypot(dx, dy) || 0.0001
@@ -312,6 +318,13 @@ export function initSkillsMetaballs(canvas: HTMLCanvasElement): void {
           b.vx += (dx / d) * f
           b.vy += (dy / d) * f
         }
+      }
+      // La bulle survolée est "épinglée" : on freine fortement sa vitesse
+      // pour qu'elle reste sous le curseur (lecture du tooltip facile).
+      const hb = hovered >= 0 ? bubbles[hovered] : undefined
+      if (hb) {
+        hb.vx *= 0.4
+        hb.vy *= 0.4
       }
     }
 
@@ -451,6 +464,21 @@ export function initSkillsMetaballs(canvas: HTMLCanvasElement): void {
     ctx.drawImage(field, 0, 0, fieldW, fieldH, 0, 0, cssW, cssH)
 
     renderLabels()
+
+    // Anneau de survol (feedback visuel sur la bulle pointée).
+    if (hovered >= 0) {
+      const hb = bubbles[hovered]
+      if (hb) {
+        g.save()
+        g.beginPath()
+        g.arc(hb.x, hb.y, hb.r + 5, 0, TAU)
+        g.lineWidth = 1.5
+        g.strokeStyle = colors.gradB
+        g.globalAlpha = 0.9
+        g.stroke()
+        g.restore()
+      }
+    }
   }
 
   /* ---------- Survol (tooltip) ---------- */
@@ -462,7 +490,7 @@ export function initSkillsMetaballs(canvas: HTMLCanvasElement): void {
       const b = bubbles[i]
       if (!b) continue
       const d = dist(pointerX, pointerY, b.x, b.y)
-      if (d < b.r && d < bestD) {
+      if (d < b.r + 10 && d < bestD) {
         bestD = d
         best = i
       }
